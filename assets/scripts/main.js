@@ -1,6 +1,6 @@
 function renderSignUpPage(){
     // Render the sign-up page with the provided form
-    
+    console.log("this function has been called");
     let cardContainer = document.querySelector(".card-container");
     fetch('../../components/signup.html')
     .then(response => response.text())  // Get the content of the HTML file
