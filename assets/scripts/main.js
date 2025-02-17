@@ -12,7 +12,21 @@ function renderSignUpPage(){
     });
 }
 
-renderSignUpPage();
+function renderSignInPage(){
+      // Render the sign-in page with the provided form
+      let cardContainer = document.querySelector(".card-container");
+      fetch('../../components/signin.html')
+      .then(response => response.text())  // Get the content of the HTML file
+      .then(html => {
+          cardContainer.innerHTML = html;  // Insert into container
+      })
+      .catch(error => {
+          console.error('Error loading the HTML file:', error);
+      });
+
+}
+
+renderSignInPage();
 
 // Singing Up
 function userSignUp(){
