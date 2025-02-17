@@ -14,6 +14,7 @@ function renderSignUpPage(){
 
 function renderSignInPage(){
       // Render the sign-in page with the provided form
+      console.log("the login function has been called");
       let cardContainer = document.querySelector(".card-container");
       fetch('../../components/signin.html')
       .then(response => response.text())  // Get the content of the HTML file
