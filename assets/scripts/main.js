@@ -28,8 +28,7 @@ function renderSignInPage(){
       });
 
 }
-
-function switchTabs(switchController){
+window.switchTabs = function (switchController){
     if(switchController === "signup"){
         renderSignUpPage();
     }else{
