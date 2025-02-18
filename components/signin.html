@@ -1,11 +1,14 @@
 <div class="card bg-base-100 w-96 shadow-xl">
     <div class="card-body items-center text-center">
         <i class="fa-brands fa-squarespace text-4xl"></i>
-        <h1>Sign In</h1>
+        <h1 class="font-bold">Sign In to your account</h1>
         <form action="">
-            <input type="email" placeholder="Email" class="input input-bordered w-full max-w-xs mt-2" />
-            <input type="password" placeholder="Password" class="input input-bordered w-full max-w-xs mt-3" />
+            <input type="email" placeholder="Email" class="input input-bordered w-full max-w-xs mt-2 focus:outline-none" />
+            <input type="password" placeholder="Password" class="input input-bordered w-full max-w-xs mt-3 focus:outline-none" />
+            <p class="mt-1 text-left"><a class="text-neutral  ml-2" href="#">Forgot password?</a></p>
             <button type="submit" class="btn btn-neutral w-full max-w-xs mt-3">Sign In</button>
         </form>
+        <p class="mt-3">Not registered? <a class="text-neutral" href="#" onclick="switchTabs('signup')">Create an account</a></p>
+
     </div>
   </div>
