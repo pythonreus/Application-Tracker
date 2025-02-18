@@ -1,3 +1,5 @@
+import * as helpers from './helper.js'
+
 function renderSignUpPage(){
     // Render the sign-up page with the provided form
     console.log("this function has been called");
@@ -27,6 +29,15 @@ function renderSignInPage(){
 
 }
 
+function switchTabs(switchController){
+    if(switchController === "signup"){
+        renderSignUpPage();
+    }else{
+        renderSignInPage();
+    }
+}
+
+// Initial render of the sign-in page
 renderSignInPage();
 
 // Singing Up
@@ -35,4 +46,24 @@ function userSignUp(){
     let password = document.getElementById('password');
     let email = document.getElementById('email');
     let confirmPassword = document.getElementById('confirmPassword');
+    
+    if(!helpers.isAlphaSpace(username.value)){
+        username.style.outline = "1px solid red";
+        return;
+    }
+
+    if(!helpers.lengthCheck(password.value)){
+        password.style.outline = "1px solid red";
+        return;
+    }
+
+    if(!helpers.stringCheck(password.value,confirmPassword.value)){
+        confirmPassword.style.outline = "1px solid red";
+        return;
+    }
+
 }
+
+// document.querySelector(".signup-submit").addEventListener('click',function(){
+//     userSignUp();
+// });
