@@ -1,0 +1,19 @@
+Required Endpoints
+
+    User Registration and Login
+        Register a new user
+        Login (authenticate) an existing user
+
+    Jobs Management
+        View all jobs
+        View a single job
+        Add a new job
+        Update an existing job
+        Delete a job
+
+    Job Applications Management
+        View all applications for a job
+        View a single application
+        Add a new job application
+        Update a job application
+        Delete a job application
