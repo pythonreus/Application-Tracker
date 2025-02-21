@@ -29,5 +29,20 @@ function renderFooter(){
     });
 }
 
+function renderPaginationBar(){
+    // Render the navigation bar with the provided links
+    let cardContainer = document.querySelector(".nav-header-container");
+    fetch('../../components/pagination.html')
+    .then(response => response.text())  // Get the content of the HTML file
+    .then(html => {
+        cardContainer.innerHTML = html;  // Insert into container
+        
+    })
+    .catch(error => {
+        console.error('Error loading the HTML file:', error);
+    });
+}
+
+
 renderNavigationBar();
 renderFooter();
