@@ -298,6 +298,12 @@ const jobApplications = [
 ];
 
 
+app.post('/search-filter', (req,res) => {
+  const filter_data = req.body;
+  res.json({message : "filter has been received"});
+
+});
+
 
 app.get('/applications', (req, res) => {
     res.json(jobApplications);
@@ -365,6 +371,8 @@ app.post('/signup', (req, res) => {
     // Respond with the received data
     res.json({ message: "Signup data received successfully", receivedData: { fullname, email, password } });
   });
+
+
   
 
 // Start the server

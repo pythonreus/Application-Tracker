@@ -8,7 +8,6 @@ function getAllApplications() {
             // Handle the response data
             let ApplicationCard = document.querySelector('.card-container');
            
-            
             data.forEach(element => {
                 // Create the outer card div element
                 const card = document.createElement('div');
@@ -97,7 +96,6 @@ function getPaginatedApplications(page = 1) {
             // Handle the response data
             let ApplicationCard = document.querySelector('.card-container');
             ApplicationCard.innerHTML = '';  // Clear the existing content
-            ApplicationCard.style.paddingTop = '70px';
             
             data['applications'].forEach(element => {
                 // Create the outer card div element
