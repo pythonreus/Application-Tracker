@@ -1,3 +1,5 @@
+import { renderSearchFilter } from "./loader.js";
+
 // retrieve all applications
 function getAllApplications() {
     fetch('http://localhost:3000/applications')
@@ -5,7 +7,7 @@ function getAllApplications() {
         .then(data => {
             // Handle the response data
             let ApplicationCard = document.querySelector('.card-container');
-            ApplicationCard.style.paddingTop = '70px';
+           
             
             data.forEach(element => {
                 // Create the outer card div element
@@ -203,6 +205,9 @@ function createPaginationButtons(currentPage, totalPages) {
 }
 
 getPaginatedApplications(currentPage);
+
+// load the search-filter
+renderSearchFilter();
 
 //add an new application
 

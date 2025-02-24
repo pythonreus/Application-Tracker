@@ -12,6 +12,21 @@ function renderNavigationBar(){
     });
 }
 
+export function renderSearchFilter(){
+    let cardContainer = document.querySelector(".search-filter");
+    fetch('../../components/search-filter.html')
+    .then(response => response.text())  // Get the content of the HTML file
+    .then(html => {
+        cardContainer.innerHTML = html;  // Insert into container
+        cardContainer.style.paddingTop = '70px';
+        
+    })
+    .catch(error => {
+        console.error('Error loading the HTML file:', error);
+    });
+
+}
+
 
 function renderFooter(){
     // Render the navigation bar with the provided links
