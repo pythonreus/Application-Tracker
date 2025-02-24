@@ -69,11 +69,72 @@ const avalJobs = [
       location: "Johannesburg, Gauteng",
       position: "Machine Learning Engineer",
       salary: "R 150,000"
+    },
+    {
+      companyName: "Quantum Innovations",
+      location: "Cape Town, Western Cape",
+      position: "Quantum Computing Engineer",
+      salary: "R 200,000"
+    },
+    {
+      companyName: "MedTech Solutions",
+      location: "Pretoria, Gauteng",
+      position: "Biomedical Engineer",
+      salary: "R 95,000"
+    },
+    {
+      companyName: "RetailTech SA",
+      location: "Johannesburg, Gauteng",
+      position: "E-commerce Specialist",
+      salary: "R 80,000"
+    },
+    {
+      companyName: "CloudX Technologies",
+      location: "Durban, KwaZulu-Natal",
+      position: "Cloud Solutions Architect",
+      salary: "R 130,000"
+    },
+    {
+      companyName: "Blockchain Ventures SA",
+      location: "Cape Town, Western Cape",
+      position: "Blockchain Developer",
+      salary: "R 140,000"
+    },
+    {
+      companyName: "Renewable Energy Hub",
+      location: "Port Elizabeth, Eastern Cape",
+      position: "Renewable Energy Consultant",
+      salary: "R 110,000"
+    },
+    {
+      companyName: "CyberShield Security",
+      location: "Sandton, Gauteng",
+      position: "Ethical Hacker",
+      salary: "R 120,000"
+    },
+    {
+      companyName: "EdTech SA",
+      location: "Bloemfontein, Free State",
+      position: "Educational Technology Specialist",
+      salary: "R 85,000"
+    },
+    {
+      companyName: "AI Research Labs",
+      location: "Johannesburg, Gauteng",
+      position: "AI Research Scientist",
+      salary: "R 180,000"
+    },
+    {
+      companyName: "VR Innovations",
+      location: "Stellenbosch, Western Cape",
+      position: "VR Game Developer",
+      salary: "R 90,000"
     }
-  ];
+];
 
 
-  const jobApplications = [
+
+const jobApplications = [
     {
         companyName: "Tech Innovators SA",
         location: "Cape Town, Western Cape",
@@ -153,13 +214,112 @@ const avalJobs = [
         salary: "R 150,000",
         progress: "Completed",
         status: "Rejected"
+    },
+    {
+        companyName: "CloudTech Solutions",
+        location: "Cape Town, Western Cape",
+        position: "Cloud Engineer",
+        salary: "R 120,000",
+        progress: "Completed",
+        status: "Accepted"
+    },
+    {
+        companyName: "FinTech Innovations",
+        location: "Johannesburg, Gauteng",
+        position: "Financial Data Analyst",
+        salary: "R 98,000",
+        progress: "In Progress",
+        status: "Pending"
+    },
+    {
+        companyName: "HealthTech SA",
+        location: "Durban, KwaZulu-Natal",
+        position: "Bioinformatics Specialist",
+        salary: "R 105,000",
+        progress: "Completed",
+        status: "Accepted"
+    },
+    {
+        companyName: "NextGen AI",
+        location: "Pretoria, Gauteng",
+        position: "AI Research Scientist",
+        salary: "R 180,000",
+        progress: "Completed",
+        status: "Rejected"
+    },
+    {
+        companyName: "E-Commerce Leaders",
+        location: "Sandton, Gauteng",
+        position: "Digital Marketing Analyst",
+        salary: "R 65,000",
+        progress: "In Progress",
+        status: "Pending"
+    },
+    {
+        companyName: "Big Data Experts",
+        location: "Cape Town, Western Cape",
+        position: "Big Data Engineer",
+        salary: "R 135,000",
+        progress: "Completed",
+        status: "Accepted"
+    },
+    {
+        companyName: "LogiTech SA",
+        location: "Port Elizabeth, Eastern Cape",
+        position: "Supply Chain Analyst",
+        salary: "R 77,000",
+        progress: "In Progress",
+        status: "Pending"
+    },
+    {
+        companyName: "MedTech Innovators",
+        location: "Johannesburg, Gauteng",
+        position: "Healthcare Data Analyst",
+        salary: "R 92,000",
+        progress: "Completed",
+        status: "Accepted"
+    },
+    {
+        companyName: "EdTech Pioneers",
+        location: "Bloemfontein, Free State",
+        position: "Educational Technology Specialist",
+        salary: "N/A",
+        progress: "In Progress",
+        status: "Pending"
+    },
+    {
+        companyName: "RetailTech SA",
+        location: "Durban, KwaZulu-Natal",
+        position: "E-Commerce Developer",
+        salary: "R 78,000",
+        progress: "Completed",
+        status: "Rejected"
     }
 ];
+
 
 
 app.get('/applications', (req, res) => {
     res.json(jobApplications);
 });
+
+app.get('/allapplications', (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const results = jobApplications.slice(startIndex, endIndex); 
+
+    res.json({
+        page,
+        limit,
+        total: avalJobs.length,
+        totalPages: Math.ceil(jobApplications.length / limit),
+        applications: results
+    });
+
+  });
   
  
   
@@ -167,6 +327,25 @@ app.get('/applications', (req, res) => {
 app.get('/jobs', (req, res) => {
   res.json(avalJobs);
 });
+
+//paginated jobs
+app.get('/alljobs', (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const results = avalJobs.slice(startIndex, endIndex); // Assuming jobs is an array
+
+    res.json({
+        page,
+        limit,
+        total: avalJobs.length,
+        totalPages: Math.ceil(avalJobs.length / limit),
+        jobs: results
+    });
+
+  });
 
 // POST endpoint: Accepts a value and displays it
 app.post('/signup', (req, res) => {
