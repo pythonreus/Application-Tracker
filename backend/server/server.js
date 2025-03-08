@@ -1,12 +1,41 @@
 const express = require('express');
+const mongoose = require("mongoose");
 const cors = require('cors');
+const User = require('./models/userModel');
 const app = express();
 const port = 3000;
+
+//this is the connection url to my database
+const db_url = "mongodb+srv://kgadiselepe:Yehovah100@my-projects.kheii.mongodb.net/Application-Tracker?retryWrites=true&w=majority&appName=My-Projects";
+mongoose.connect(db_url)
+  .then((result) => {
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    });
+  })
+  .catch((err) => console.log(err));
 
 app.use(cors());
 
 // Middleware to parse JSON data in request body
 app.use(express.json());
+
+// dealing with database operations
+app.get("/register",(req,res) =>{
+  const user = new User({
+      fullname : "Kgadi Selepe",
+      email : "kgadiselepe11@gmail.com",
+      password: "qwerty123"
+  })
+  user.save()
+    .then((result) =>{
+        res.send(result);
+    })
+    .catch((err) =>{
+      console.log(err)
+    });
+
+});
 
 // Sample data: companies with monthly salaries
 const avalJobs = [
@@ -357,17 +386,24 @@ app.post('/signup', (req, res) => {
       return res.status(400).json({ error: "All fields (fullname, email, password) are required" });
     }
   
-    // Log the values to the console
-    console.log('Full Name:', fullname);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    // process the user data
+    const user = new User({
+        fullname : fullname,
+        email : email,
+        password : password
+    });
+
+    user.save()
+      .then((result) =>{
+        // Respond with the received data
+        res.json({ message: "User Signup was successful!"});
+
+      })
+      .catch((err) =>{
+        res.json({ message: "User Signup was unsuccessful!"});
+      });
   
-    // Respond with the received data
-    res.json({ message: "Signup data received successfully", receivedData: { fullname, email, password } });
+    
   });
   
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
