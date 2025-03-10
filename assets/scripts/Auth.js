@@ -10,7 +10,7 @@ async function SignUp(name,email,password){
 
     try {
         // Send POST request to server
-        const response = await fetch('/signup', {
+        const response = await fetch('http://localhost:3000/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,15 +23,20 @@ async function SignUp(name,email,password){
 
         // Check if the response indicates success or failure
         if (response.ok) {
-            return { success: true };
+            //return { success: true };
+            console.log(data.message);
         } else {
-            return { success: false, message: data.message || 'Signup failed' };
+            //return { success: false, message: data.message || 'Signup failed' };
+            console.log(data.message);
         }
     } catch (error) {
-        return { success: false, message: 'An error occurred during the signup process.' };
+        console.log(data.message);
+       //return { success: false, message: 'An error occurred during the signup process.' };
     }
 }
 
 // user logout
 
 // user delete accounts
+
+export { SignUp };
