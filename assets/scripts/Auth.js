@@ -1,38 +1,29 @@
 // user login
 
 //user registration
-async function SignUp(name,email,password){
+function SignUp(name,email,password){
     const requestData = {
-        name: name,
+        fullname: name,
         email: email,
         password: password
     };
 
-    try {
-        // Send POST request to server
-        const response = await fetch('http://localhost:3000/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestData)  // Convert data to JSON format
-        });
+    // Send POST request to server
+    fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)  // Convert data to JSON format
+    })
+    .then((response) => response.json())
+    .then((data) =>{
+       console.log(data.result);
+    })
+    .catch((err) => {
+        console.log("theres an error");
+    });
 
-        // Parse the response from the server
-        const data = await response.json();
-
-        // Check if the response indicates success or failure
-        if (response.ok) {
-            //return { success: true };
-            console.log(data.message);
-        } else {
-            //return { success: false, message: data.message || 'Signup failed' };
-            console.log(data.message);
-        }
-    } catch (error) {
-        console.log(data.message);
-       //return { success: false, message: 'An error occurred during the signup process.' };
-    }
 }
 
 // user logout

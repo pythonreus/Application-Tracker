@@ -380,7 +380,7 @@ app.get('/alljobs', (req, res) => {
 app.post('/signup', (req, res) => {
     // Destructure the input from the request body
     const { fullname, email, password } = req.body;
-  
+   
     // Check if all required fields are provided
     if (!fullname || !email || !password) {
       return res.status(400).json({ error: "All fields (fullname, email, password) are required" });
@@ -396,7 +396,7 @@ app.post('/signup', (req, res) => {
     user.save()
       .then((result) =>{
         // Respond with the received data
-        res.json({ message: "User Signup was successful!"});
+        res.json({ message: "User Signup was successful!", result: result});
 
       })
       .catch((err) =>{

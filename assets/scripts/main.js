@@ -8,9 +8,12 @@ function renderSignUpPage(){
     .then(response => response.text())  // Get the content of the HTML file
     .then(html => {
         cardContainer.innerHTML = html;  // Insert into container
-        document.querySelector(".signup-submit").addEventListener('click',function(){
-            userSignUp();
-        });
+         // Add event listener to the form submit action
+         const signupForm = document.getElementById("signup-form");
+         signupForm.addEventListener('submit', function(event) {
+            
+             userSignUp(event);  // Call your signup function
+         });
 
     })
     .catch(error => {
@@ -43,27 +46,15 @@ window.switchTabs = function (switchController){
 renderSignInPage();
 
 // Singing Up
-window.userSignUp = function(){
+window.userSignUp = function(event){
+    event.preventDefault(); 
     let username = document.getElementById('username');
     let password = document.getElementById('password');
     let email = document.getElementById('email');
     let confirmPassword = document.getElementById('confirmPassword');
     
-    if(!helpers.isAlphaSpace(username.value)){
-        username.style.outline = "1px solid red";
-        return;
-    }
+    //validate the data
 
-    if(!helpers.lengthCheck(password.value)){
-        password.style.outline = "1px solid red";
-        return;
-    }
-
-    if(!helpers.stringCheck(password.value,confirmPassword.value)){
-        confirmPassword.style.outline = "1px solid red";
-        return;
-    }
-
-    Auth.SignUp(username,email,password);
+    Auth.SignUp(username.value,email.value,password.value);
 
 };
